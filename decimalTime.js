@@ -26,26 +26,16 @@
  * for the JavaScript code in this page.
 */
 
-/* Decimal Time, a straightforward implementation of how to write and
- * display a date and time in decimal notation, either worldwide or
- * local based on legacy timezones. Years are counted from the Unix
- * Epoch (Jan. 1st, 1970 in legacy time), time is counted by number of
- * days elapsed during the year, plus the fragment of day already
- * elapsed up to five decimal digits (deciday, centiday, milliday,
- * decimilliday, centimilliday). As of yet, decimal time has been only
- * implemented for terrestrial dates, hence the T suffix after the year.
- * Worldwide time is indicated by an M suffix, while local timezones use
- * a L prefix followed by two digits that score the amount of offset
- * from legacy UTC.
- *
- * Sample worldwide date: 43T364.84167M
- *
- * Sample local date for UTC-6: 43T364.59167L-06
- *
- * Warning: this script is written for legibility, NOT for performance.
- */
-var decimalTime = function(isLocal){
-	var date = new Date();
+var decimalTime = function(date, isLocal, precision){
+	if (date == null){
+		date = new Date();
+	}
+	if (isLocal == null){
+		isLocal = false;
+	}
+	if (precision == null){
+		precision = 5;
+	}
 	if (isLocal){
 		var yr = date.getFullYear()-1970;
 		var mt = date.getMonth()+1;
@@ -116,7 +106,7 @@ var decimalTime = function(isLocal){
 	ft = ft + ms/24/60/60/1000;
 
 	var dt = fd+ft;
-	dt = dt.toFixed(5); //5 decimal places
+	dt = dt.toFixed(precision);
 
 	var output = yr+"T"+dt;
 	if (isLocal) {
@@ -141,16 +131,5 @@ var decimalTime = function(isLocal){
 	}
 	return output;
 };
-
-var displayTime = function() {
-	document.getElementById('timeSpan').innerHTML = decimalTime(false);
-	document.getElementById('localTimeSpan').innerHTML = decimalTime(true);
-};
-
-//Autostart
-var starter = function(){
-	window.setInterval(displayTime, 864); //Every centimilliday
-};
-document.addEventListener('DOMContentLoaded',starter);
 
 //@license-end
