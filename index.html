@@ -10,6 +10,7 @@
 			}
 			#timeSpan, #localTimeSpan, #legacyTimeSpan {
 				font-family: monospace;
+				font-size: 1.5em;
 			}
 		</style>
 	</head>
@@ -82,7 +83,7 @@
 		var starter = function(){
 			window.setInterval(displayTime, 864); //Every centimilliday
 		};
-		document.addEventListener('DOMContentLoaded',starter);
+		window.onload = starter(); //document.addEventListener('DOMContentLoaded',starter);
 		//@license-end
 	</script>
 </html>

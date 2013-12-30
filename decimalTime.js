@@ -101,9 +101,9 @@ var decimalTime = function(date, isLocal, precision){
 
 	var ft = 0;
 	ft = ft + hr/24;
-	ft = ft + mt/24/60;
-	ft = ft + sc/24/60/60;
-	ft = ft + ms/24/60/60/1000;
+	ft = ft + mn/(24*60);
+	ft = ft + sc/(24*60*60);
+	ft = ft + ms/(24*60*60*1000);
 
 	var dt = fd+ft;
 	dt = dt.toFixed(precision);
