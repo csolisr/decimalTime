@@ -110,6 +110,7 @@ var decimalTime = function(date, isLocal, precision){
 
 	var output = yr+"T"+dt;
 	if (isLocal) {
+		/*
 		var offset = date.getTimezoneOffset()/(-60);
 		if (offset > 0){
 			if (offset < 10){
@@ -121,6 +122,17 @@ var decimalTime = function(date, isLocal, precision){
 			if (offset < 10){
 				offset = "0"+offset;
 			}
+			offset = "L-"+offset;
+		} else {
+			offset = "M";
+		}
+		output = output+offset;
+		*/
+		var offset = date.getTimezoneOffset()/(24*60);
+		if (offset > 0){
+			offset = "L+"+offset;
+		} else if (offset < 0){
+			offset = offset * -1;
 			offset = "L-"+offset;
 		} else {
 			offset = "M";

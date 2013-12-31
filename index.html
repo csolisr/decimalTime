@@ -43,8 +43,9 @@
 			<li>As of yet, decimal time has been only implemented for
 			terrestrial dates, hence the T suffix after the year.</li>
 			<li>Worldwide time is indicated by an M suffix, while local
-			timezones use a L prefix followed by two digits that score
-			the amount of offset from legacy UTC.</li>
+			timezones use a L prefix followed by the amount of offset
+			that must be added or substracted in decimal time to reach
+			legacy UTC.</li>
 		</ul>
 	</body>
 	<script src="decimalTime.js"></script>
@@ -92,10 +93,16 @@
 				}
 			}
 			*/
-			document.getElementById('timeSpan').innerHTML = decimalTime();
-			document.getElementById('localTimeSpan').innerHTML = decimalTime(d, true);
+			if (document.getElementById('timeSpan').innerHTML != decimalTime() ){
+				document.getElementById('timeSpan').innerHTML = decimalTime();
+			}
+			if (document.getElementById('localTimeSpan').innerHTML != decimalTime(d, true) ) {
+				document.getElementById('localTimeSpan').innerHTML = decimalTime(d, true);
+			}
 			//document.getElementById('legacyTimeSpan').innerHTML = new Date() + " + " + m + " ms";
-			document.getElementById('legacyTimeSpan').innerHTML = new Date();
+			if (document.getElementById('legacyTimeSpan').innerHTML != new Date() ){
+				document.getElementById('legacyTimeSpan').innerHTML = new Date();
+			}
 		};
 
 		//Autostart

@@ -5,17 +5,17 @@ decimalTime is a straightforward implementation of how to write and
 display a date and time in decimal notation, either worldwide or
 local based on legacy timezones. Years are counted from the Unix
 Epoch (Jan. 1st, 1970 in legacy time), time is counted by number of
-days elapsed during the year, plus the fragment of day already
-elapsed up to five decimal digits (deciday, centiday, milliday,
-decimilliday, centimilliday). As of yet, decimal time has been only
-implemented for terrestrial dates, hence the T suffix after the year.
-Worldwide time is indicated by an M suffix, while local timezones use
-a L prefix followed by two digits that score the amount of offset
-from legacy UTC.
+days (counting from zero) elapsed during the year, plus the fragment of
+day already elapsed up to five decimal digits (deciday, centiday,
+milliday, decimilliday, centimilliday). As of yet, decimal time has been
+only implemented for terrestrial dates, hence the T suffix after the
+year. Worldwide time is indicated by an M suffix, while local timezones
+use a L prefix followed by the amount of offset that must be added or
+substracted in decimal time to reach legacy UTC.
 
 Sample worldwide date: 43T364.84167M
 
-Sample local date for UTC-6: 43T364.59167L-06
+Sample local date for UTC-6: 43T364.59167L+0.25
 
 License
 ===========
