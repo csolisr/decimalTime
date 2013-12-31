@@ -3,6 +3,8 @@
 		<title>Decimal Time Test</title>
 		<style type="text/css">
 			body {
+				width: 100%;
+				font-size: 1em;
 				font-family: "DejaVu Sans", sans-serif;
 			}
 			.display, h1, h2, h3 {
@@ -33,10 +35,11 @@
 		<ul>
 			<li>Years are counted from the Unix Epoch (Jan. 1st, 1970
 			in legacy time).</li>
-			<li>Time is counted by number of days elapsed during the
-			year, plus the decimal fragment of day already elapsed up to five
-			decimal digits (deciday, centiday, milliday, decimilliday,
-			centimilliday respectively).</li>
+			<li>Time is counted by number of days (counting from zero)
+			elapsed during the year, plus the decimal fragment of day 
+			already elapsed up to five decimal digits (deciday,
+			centiday, milliday, decimilliday, centimilliday
+			respectively).</li>
 			<li>As of yet, decimal time has been only implemented for
 			terrestrial dates, hence the T suffix after the year.</li>
 			<li>Worldwide time is indicated by an M suffix, while local
@@ -75,6 +78,7 @@
 		*/
 		var displayTime = function() {
 			var d = new Date();
+			/*
 			var m = d.getMilliseconds();
 			if (m <= 100) {
 				if (m <= 10) {
@@ -87,9 +91,11 @@
 					m = "0" +m;
 				}
 			}
+			*/
 			document.getElementById('timeSpan').innerHTML = decimalTime();
 			document.getElementById('localTimeSpan').innerHTML = decimalTime(d, true);
-			document.getElementById('legacyTimeSpan').innerHTML = new Date() + " + " + m + " ms";
+			//document.getElementById('legacyTimeSpan').innerHTML = new Date() + " + " + m + " ms";
+			document.getElementById('legacyTimeSpan').innerHTML = new Date();
 		};
 
 		//Autostart

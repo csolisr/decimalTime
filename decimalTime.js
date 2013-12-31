@@ -55,9 +55,9 @@ var decimalTime = function(date, isLocal, precision){
 	}
 
 	//Day number
-	var fd = dy;
+	var fd = dy-1;
 	//Leap years
-	if (yr%4==0 && (yr%100!=0 || yr%400==0) ){
+	if (mt >= 2 && ( yr%4==0 && (yr%100!=0 || yr%400==0) )){
 		fd+=1;
 	}
 	switch (mt) {
