@@ -74,14 +74,28 @@
 		 * for the JavaScript code in this page.
 		*/
 		var displayTime = function() {
+			var d = new Date();
+			var m = d.getMilliseconds();
+			if (m <= 100) {
+				if (m <= 10) {
+					if (m == 0) {
+						m = "000";
+					} else {
+						m = "00"+m;
+					}
+				} else {
+					m = "0" +m;
+				}
+			}
 			document.getElementById('timeSpan').innerHTML = decimalTime();
-			document.getElementById('localTimeSpan').innerHTML = decimalTime(new Date(), true);
-			document.getElementById('legacyTimeSpan').innerHTML = new Date() + " + " + new Date().getMilliseconds() + " ms";
+			document.getElementById('localTimeSpan').innerHTML = decimalTime(d, true);
+			document.getElementById('legacyTimeSpan').innerHTML = new Date() + " + " + m + " ms";
 		};
 
 		//Autostart
 		var starter = function(){
-			window.setInterval(displayTime, 864); //Every centimilliday
+			//window.setInterval(displayTime, 864); //Every centimilliday
+			window.setInterval(displayTime, 1);
 		};
 		window.onload = starter(); //document.addEventListener('DOMContentLoaded',starter);
 		//@license-end
